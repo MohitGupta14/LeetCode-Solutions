@@ -14,22 +14,17 @@ class Solution {
         int j = 0;
         int n =  cardPoints.length;
         int subCount = 0;
-        PriorityQueue<Integer>pq = new PriorityQueue<>();
+        int minWindowSum = count;
         while(j !=  k+1){
             
             for(int i = j ; i < j+n-k;i++){
                 subCount += cardPoints[i]; 
             }
 
-            if(!pq.isEmpty()){
-                if(pq.peek() > subCount){
-                    pq.poll();
-                }
-            }
-            pq.add(subCount);
+            minWindowSum = Math.min(minWindowSum, subCount);
             subCount = 0;
             j++;
         }
-        return count-pq.poll();
+        return count- minWindowSum;
     }
 }
