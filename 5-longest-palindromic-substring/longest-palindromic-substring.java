@@ -1,53 +1,32 @@
 class Solution {
-    List<String> dp = new ArrayList<>();
-    boolean count = false;
-
-    public void checkPal(String s) {
-        int beg = 0;
-        int end = s.length() - 1;
-
-        while (beg < end) {
-            if (s.charAt(beg) == s.charAt(end)) {
-                beg++;
-                end--;
-                count = true;
-            } else {
-                count = false;
-                break;
-            }
-        }
-
-        if (count) {
-            dp.add(s);
-        }
-    }
-
     public String longestPalindrome(String s) {
-        if (s.length() < 2) {
-            return s;
+        if (s == null || s.length() < 1) {
+            return "";
         }
+
+        int start = 0;
+        int end = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j >= i; j--) {
-                checkPal(s.substring(i, j + 1));
-                if (count) {
-                    break;
-                }
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
             }
         }
 
-        if (dp.isEmpty()) {
-            return Character.toString(s.charAt(0)); // Handle the case where there are no palindromes found
+        return s.substring(start, end + 1);
+    }
+
+    private int expandAroundCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
         }
 
-        String maxLengthString = dp.get(0);
-
-        for (String str : dp) {
-            if (str.length() > maxLengthString.length()) {
-                maxLengthString = str;
-            }
-        }
-
-        return maxLengthString;
+        return right - left - 1;
     }
 }
