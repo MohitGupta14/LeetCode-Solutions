@@ -22,9 +22,6 @@ class Solution {
     
         }
 
-        while(!list.isEmpty()){
-            list.remove();
-        }
         return count;
     }
 }
