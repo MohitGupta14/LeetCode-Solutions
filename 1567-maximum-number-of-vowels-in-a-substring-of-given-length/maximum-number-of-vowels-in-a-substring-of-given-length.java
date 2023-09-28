@@ -23,6 +23,10 @@ class Solution {
             r++;
         }
 
+        while(!list.isEmpty()){
+            list.remove();
+        }
+
         return maxCount;
     }
 
