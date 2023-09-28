@@ -1,7 +1,7 @@
 class Solution {
     public int numOfSubarrays(int[] arr, int k, int threshold) {
         
-        ArrayList<Integer> list = new ArrayList<>();
+        Queue<Integer> list = new LinkedList<>();
         int count = 0;
         int sum = 0;
         for(int i = 0 ; i <arr.length ; i++){
@@ -10,8 +10,8 @@ class Solution {
 
          
             if(list.size() > k){
-                sum = sum-list.get(0);
-                list.remove(0);
+                sum = sum-list.peek();
+                list.remove();
 
             }
 
@@ -22,6 +22,9 @@ class Solution {
     
         }
 
+        while(!list.isEmpty()){
+            list.remove();
+        }
         return count;
     }
 }
