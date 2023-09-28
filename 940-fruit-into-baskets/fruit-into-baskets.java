@@ -2,28 +2,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
-    public int totalFruit(int[] tree) {
-        int maxFruits = 0;
+    public int totalFruit(int[] fruits) {
+        Map<Integer, Integer> count = new HashMap<>();
         int left = 0;
-        Map<Integer, Integer> fruitCounts = new HashMap<>();
+        int total = 0;
+        int res = 0;
 
-        for (int right = 0; right < tree.length; right++) {
-            int fruit = tree[right];
-            fruitCounts.put(fruit, fruitCounts.getOrDefault(fruit, 0) + 1);
+        for (int fruit : fruits) {
+            count.put(fruit, count.getOrDefault(fruit, 0) + 1);
+            total++;
 
-            while (fruitCounts.size() > 2) {
-                int leftFruit = tree[left];
-                fruitCounts.put(leftFruit, fruitCounts.get(leftFruit) - 1);
-                if (fruitCounts.get(leftFruit) == 0) {
-                    fruitCounts.remove(leftFruit);
-                }
+            while (count.size() > 2) {
+                int f = fruits[left];
+                count.put(f, count.get(f) - 1);
+                total--;
                 left++;
+                if (count.get(f) == 0) {
+                    count.remove(f);
+                }
             }
 
-           
-            maxFruits = Math.max(maxFruits, right - left + 1);
+            res = Math.max(res, total);
         }
 
-        return maxFruits;
+        return res;
     }
 }
