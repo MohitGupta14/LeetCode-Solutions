@@ -1,8 +1,7 @@
 class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
-    if(nums == null || nums.length < 2 || k == 0)
-            return false;
+    
         
         Set<Integer> set = new HashSet<>();
          int left = 0;
