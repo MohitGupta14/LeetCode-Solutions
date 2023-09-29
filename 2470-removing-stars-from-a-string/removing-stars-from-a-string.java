@@ -12,11 +12,11 @@ class Solution {
             }
         }
 
-        StringBuilder str=new StringBuilder();
+        String ans = "";
        for(char c:s1){
-           str.append(c);
+           ans = ans + c;
        }
-        return str.toString();
+        return ans;
 
 
     }
