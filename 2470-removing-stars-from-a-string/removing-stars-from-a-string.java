@@ -12,11 +12,12 @@ class Solution {
             }
         }
 
-        String ans = "";
-        while(!s1.empty()){
-            ans = s1.pop() + ans;
-        }   
-         return ans;
+        StringBuilder str=new StringBuilder();
+       for(char c:s1){
+           str.append(c);
+       }
+        return str.toString();
+
 
     }
 }
