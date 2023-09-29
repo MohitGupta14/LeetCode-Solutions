@@ -14,12 +14,6 @@ class Solution {
           
         }
        
-        for(int i = j; i < popped.length ;i++){
-            if(popped[i] == st.peek()){
-                st.pop();
-            }
-        }
-
         return st.empty();
     }
 }
