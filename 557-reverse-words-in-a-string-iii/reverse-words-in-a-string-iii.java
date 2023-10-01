@@ -2,12 +2,12 @@ class Solution {
     public String reverseWords(String s) {
         Stack<String>  q = new Stack<>();
         for(int i = 0 ; i < s.length() ; i++){
-            String temp = "";
+             StringBuilder temp = new StringBuilder();
             while(i <s.length() && s.charAt(i) != ' '){
-                temp = s.charAt(i)+temp;
+                temp.insert(0,s.charAt(i));
                 i++;
             }
-            q.add(temp);
+            q.add(temp.toString());
             if(i == s.length()){
                 break;
             }
