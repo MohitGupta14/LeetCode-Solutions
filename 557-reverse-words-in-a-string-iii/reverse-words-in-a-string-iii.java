@@ -1,7 +1,6 @@
 class Solution {
     public String reverseWords(String s) {
-        Queue<String>  q = new LinkedList<>();
-
+        Stack<String>  q = new Stack<>();
         for(int i = 0 ; i < s.length() ; i++){
             String temp = "";
             while(i <s.length() && s.charAt(i) != ' '){
@@ -9,17 +8,17 @@ class Solution {
                 i++;
             }
             q.add(temp);
+            if(i == s.length()){
+                break;
+            }
+            q.add(" ");
         }
 
         String ans = "";
         while(!q.isEmpty()){
-            ans = ans+q.poll();
-            if(q.isEmpty()){
-                break;
-            }
-            ans = ans+" ";
+            ans = q.pop() + ans ;
+            
         }
-
         return ans;
     }
 }
