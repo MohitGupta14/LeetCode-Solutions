@@ -14,11 +14,12 @@ class Solution {
             q.add(" ");
         }
 
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         while(!q.isEmpty()){
-            ans = q.pop() + ans ;
+            ans.insert(0,q.pop());
             
         }
-        return ans;
+
+        return ans.toString();
     }
 }
