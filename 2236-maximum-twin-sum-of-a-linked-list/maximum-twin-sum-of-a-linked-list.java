@@ -18,9 +18,9 @@ class Solution {
            current = current.next;
         }
         int ans = -99999999;
-        for(int i =0 ; i<l1.size();i++){
+        for(int i =0 ; i<l1.size()/2;i++){
            ans = Math.max(ans, l1.get(i) + l1.get(l1.size() - i -1 ));
-            System.out.print(l1.get(l1.size() - i -1 ));
+        
         }
 
         return ans;
