@@ -3,7 +3,7 @@ class Solution {
         int i = 0;
         int ans = 0; 
 
-        while(i< nums.length+1){
+        while(i< nums.length){
 
             for(int j = i+1 ; j < nums.length ; j++){
                 if(nums[i] == nums[j]){
