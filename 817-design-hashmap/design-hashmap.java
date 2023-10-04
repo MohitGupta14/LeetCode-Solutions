@@ -1,44 +1,27 @@
-import java.util.ArrayList;
-
 class MyHashMap {
-    private ArrayList<ArrayList<Integer>> map;
-
+    int data[];
     public MyHashMap() {
-        map = new ArrayList<>();
+        data = new int[10000000];
+        Arrays.fill(data,-1);
     }
-
+    
     public void put(int key, int value) {
-        boolean found = false;
-        for (int i = 0; i < map.size(); i++) {
-            if (map.get(i).get(0) == key) {
-                map.get(i).set(1, value); // Update the value associated with the key
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            ArrayList<Integer> innerMap = new ArrayList<>();
-            innerMap.add(key);
-            innerMap.add(value);
-            map.add(innerMap);
-        }
+        data[key] = value;
     }
-
+    
     public int get(int key) {
-        for (int i = 0; i < map.size(); i++) {
-            if (map.get(i).get(0) == key) {
-                return map.get(i).get(1);
-            }
-        }
-        return -1; 
+        return data[key];
     }
-
+    
     public void remove(int key) {
-        for (int i = 0; i < map.size(); i++) {
-            if (map.get(i).get(0) == key) {
-                map.remove(i);
-                break; 
-            }
-        }
+        data[key] = -1;
     }
 }
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap obj = new MyHashMap();
+ * obj.put(key,value);
+ * int param_2 = obj.get(key);
+ * obj.remove(key);
+ */
