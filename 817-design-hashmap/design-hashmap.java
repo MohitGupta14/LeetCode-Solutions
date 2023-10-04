@@ -1,7 +1,7 @@
 class MyHashMap {
     int data[];
     public MyHashMap() {
-        data = new int[10000000];
+        data = new int[1000001];
         Arrays.fill(data,-1);
     }
     
