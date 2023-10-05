@@ -1,32 +1,46 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
         
-        int counter = nums.length/3;
-        Arrays.sort(nums);
-        int count = 0;
-        List<Integer>ans = new ArrayList<>();
-        if(nums.length <= 2){
-            for(int i = 0 ; i< nums.length ;i++){
-                if(!ans.contains(nums[i])){
-                     ans.add(nums[i]);
-                }
-            }
-            return ans;
-        }
-        for(int i = 1 ; i< nums.length ; i++ ){
-            if(nums[i-1] == nums[i]){
-                count++;
-                
+        int candidate1 = 0;
+        int candidate2 = 0;
+        int count1 = 0;
+        int count2 =0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int num : nums){
+            if(candidate1 == num){
+                count1++;
+            }else if(candidate2 == num){
+                count2++;
+            }else if(count1 == 0){
+                candidate1 = num;
+                count1 = 1;
+            }else if(count2 == 0){
+                candidate2 = num;
+                count2 = 1;
             }else{
-                count = 0;
+               count1--;
+               count2--;
             }
-            if(count >= counter){
-               if(!ans.contains(nums[i-1])){
-                     ans.add(nums[i-1]);
-                }
-                count = 0;
+
+        }
+
+        count1 = 0;
+        count2 = 0;
+
+        for(int num : nums){
+            if(candidate1 == num){
+                 count1++;
+            }else if(candidate2 == num){
+                count2++;
             }
-            
+        }
+
+        if(count1 > nums.length/3){
+            ans.add(candidate1);
+        }
+
+        if(count2 > nums.length/3){
+            ans.add(candidate2);
         }
 
         return ans;
