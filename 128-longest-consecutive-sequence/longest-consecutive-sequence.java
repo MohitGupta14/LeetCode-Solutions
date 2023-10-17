@@ -21,7 +21,7 @@ class Solution {
                 }
 
                 ans = Math.max(ans, streak);
-            }
+            } if(ans> nums.length/2) break;
         }
 
         return ans;
