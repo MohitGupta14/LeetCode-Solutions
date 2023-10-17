@@ -1,18 +1,29 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        int n = nums.length;
-        int ans[] = new int[n];
-        Arrays.fill(ans, 1);
-        int curr = 1;
-        for(int i = 0; i < n; i++) {
-            ans[i] *= curr;
-            curr *= nums[i];
+        int ans[] = new int[nums.length];
+        int mul =1;
+        int mul2 =1;
+        int temp = 0;
+        for(int i = 0 ; i < nums.length;i++){
+            mul = mul*nums[i];
+            if(nums[i] != 0){
+                mul2= mul2*nums[i];
+            }else{
+                temp++;
+            }
         }
-        curr = 1;
-        for(int i = n - 1; i >= 0; i--) {
-            ans[i] *= curr;
-            curr *= nums[i];
+        for(int i = 0 ; i < nums.length;i++){
+            if(nums[i] != 0 ){
+             ans[i] = mul/nums[i];
+            }
+            if(temp< 2 && nums[i] == 0){
+                ans[i] = mul2;
+            }
+            if(temp> 1 && nums[i] == 0){
+                ans[i] = 0;
+            }
         }
+
         return ans;
     }
 }
