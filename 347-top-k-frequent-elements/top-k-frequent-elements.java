@@ -1,26 +1,28 @@
-
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int i = 0 ; i< nums.length;i++){
+            if(map.containsKey(nums[i])){
+               int temp =  map.get(nums[i]);
+               map.put(nums[i],++temp);
+            }else{
+              map.put(nums[i],1);
+            }
         }
 
-        // Create a max-heap (PriorityQueue) to store entries based on frequencies
-        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>(
-            (a, b) -> b.getValue().compareTo(a.getValue())
-        );
+        Queue<Integer> heap = new PriorityQueue<>(
+            (n1, n2) -> map.get(n1) - map.get(n2));
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            maxHeap.offer(entry);
+        for (int n: map.keySet()) {
+          heap.add(n);
+          if (heap.size() > k) heap.poll();    
         }
-
-        int[] ans = new int[k];
-        for (int i = 0; i < k; i++) {
-            ans[i] = maxHeap.poll().getKey();
+       int[] top = new int[k];
+       for(int i = k - 1; i >= 0; --i) {
+            top[i] = heap.poll();
         }
-
-        return ans;
+        return top;
+ 
     }
 }
