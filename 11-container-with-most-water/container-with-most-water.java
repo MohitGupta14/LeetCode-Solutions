@@ -4,7 +4,7 @@ class Solution {
         int i = 0 ;
         int j = height.length-1;
         while(i<j){ 
-            int maxPossible = height[i]*(height.length-i);
+            int maxPossible = height[i]*(height.length-i-1);
             if(maxPossible <= ans){
                 i++;
                 continue;
