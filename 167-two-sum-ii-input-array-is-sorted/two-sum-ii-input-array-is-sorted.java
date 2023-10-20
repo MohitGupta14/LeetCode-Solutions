@@ -5,9 +5,8 @@ class Solution {
         for(int i = 0; i< nums.length; i++){
             int diff = target - nums[i];
             if(map.containsKey(diff)){
-               ans[1] = map.get(diff)+1;
-               ans[0] = i+1;
-               Arrays.sort(ans);
+               ans[0] = map.get(diff)+1;
+               ans[1] = i+1;
                return ans;
             }
             map.put(nums[i] , i);
