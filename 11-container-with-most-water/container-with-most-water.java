@@ -9,6 +9,12 @@ class Solution {
                 i++;
                 continue;
             }
+
+            maxPossible = height[j]*(j);
+            if(maxPossible <= ans){
+                j--;
+                continue;
+            }
            
            ans = Math.max(Math.min(height[i],height[j])*(j-i),ans);
            if(height[i]>height[j]){
