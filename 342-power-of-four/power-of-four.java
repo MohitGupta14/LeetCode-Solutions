@@ -1,15 +1,16 @@
 class Solution {
     public boolean isPowerOfFour(int n) {
-        float elem = 1;
-        for (int i = 0; i < 50; i++) {
-            elem = (float) Math.pow(4, i);  
-            if (elem == n) {
-                return true;
-            }
-            if (elem > n) {
+        if (n <= 0) {
+            return false;
+        }
+
+        while (n > 1) {
+            if (n % 4 != 0) {
                 return false;
             }
+            n /= 4;
         }
-        return false;
+
+        return n == 1;
     }
 }
