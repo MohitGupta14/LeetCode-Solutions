@@ -11,6 +11,7 @@ class Solution {
                 ans++;
             }
         }
+        vis = null;
         return ans;
     }
 
