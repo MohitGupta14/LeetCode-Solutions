@@ -4,6 +4,7 @@ class Solution {
     public long minimumCost(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
+        int median= nums[n / 2];
         int median1 = nums[n / 2];
         int median2 = nums[n / 2]; 
 
@@ -17,9 +18,6 @@ class Solution {
         while (!isPalindrome(median2)) {
             median2++;
         }
-        
-        System.out.print(median1 + " ");
-        System.out.print(median2);
 
 
         for (int i = 0; i < nums.length; i++) {
