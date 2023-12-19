@@ -9,12 +9,13 @@ class Solution {
                 int sum = 0;
                 int count = 0;
 
-                for (int ni = i - 1; ni <= i + 1; ni++) {
-                    for (int nj = j - 1; nj <= j + 1; nj++) {
-                        if (isValidIndex(ni, nj, m, n)) {
-                            sum += img[ni][nj];
+                for (int ni =  - 1; ni <=   1; ni++) {
+                    for (int nj =  - 1; nj <=   1; nj++) {
+                        int nx = ni + i;
+                        int ny = nj + j;
+                        if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+                            sum += img[nx][ny];
                             count++;
-                        }
                     }
                 }
 
@@ -25,7 +26,5 @@ class Solution {
         return ans;
     }
 
-    private boolean isValidIndex(int i, int j, int m, int n) {
-        return i >= 0 && i < m && j >= 0 && j < n;
-    }
+    
 }
