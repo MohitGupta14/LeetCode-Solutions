@@ -11,7 +11,7 @@ class Solution {
 
                 for (int ni = i - 1; ni <= i + 1; ni++) {
                     for (int nj = j - 1; nj <= j + 1; nj++) {
-                        if (ni >= 0 && ni < m && nj >= 0 && nj < n) {
+                        if (isValidIndex(ni, nj, m, n)) {
                             sum += img[ni][nj];
                             count++;
                         }
@@ -23,5 +23,9 @@ class Solution {
         }
 
         return ans;
+    }
+
+    private boolean isValidIndex(int i, int j, int m, int n) {
+        return i >= 0 && i < m && j >= 0 && j < n;
     }
 }
