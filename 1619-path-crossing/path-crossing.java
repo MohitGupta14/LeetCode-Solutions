@@ -29,7 +29,6 @@ class Solution {
         
         }
 
-        System.out.print(y);
 
         return false;
     }
