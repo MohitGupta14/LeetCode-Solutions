@@ -14,18 +14,16 @@ class Solution {
         
             temp2 = temp2+ '1';
             temp2 = temp2 + '0';
-        
-            i++;
-        }
 
-        for(int i =0 ; i<n ;i++){
             if(s.charAt(i) != temp1.charAt(i)){
                 ans1++;
             }
             if(s.charAt(i) != temp2.charAt(i)){
                 ans2++;
             }
+        
         }
+
 
         return Math.min(ans1,ans2);
     }
