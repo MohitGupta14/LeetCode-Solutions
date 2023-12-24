@@ -14,6 +14,6 @@ class Solution {
             }
         }
 
-        return Math.min(ans1, ans2);
+        return ans1 < ans2 ? ans1 :ans2;
     }
 }
