@@ -11,20 +11,15 @@ class Solution {
             while (i < colors.length() && colors.charAt(i - 1) == colors.charAt(i)) {
                 pq.add(neededTime[i-1]);
                 k = 1;
-                i++;
+                i++;                
             }
             if(i-1 < colors.length() && k == 1){
                 pq.add(neededTime[i-1]);
-
-            }
-
-            if (!pq.isEmpty()) {
                 while (pq.size() != 1) {
                     ans += pq.poll();
                 }
-                pq.poll();
-            }
 
+            }
             i++;
         }
 
