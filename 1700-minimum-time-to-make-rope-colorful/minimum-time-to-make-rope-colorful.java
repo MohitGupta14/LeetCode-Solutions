@@ -4,9 +4,9 @@ class Solution {
     public int minCost(String colors, int[] neededTime) {
         int ans = 0;
         int i = 1;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
         while (i < colors.length()) {
-            PriorityQueue<Integer> pq = new PriorityQueue<>();
             int k = 0;
             while (i < colors.length() && colors.charAt(i - 1) == colors.charAt(i)) {
                 pq.add(neededTime[i-1]);
@@ -18,6 +18,7 @@ class Solution {
                 while (pq.size() != 1) {
                     ans += pq.poll();
                 }
+                pq.poll();
 
             }
             i++;
