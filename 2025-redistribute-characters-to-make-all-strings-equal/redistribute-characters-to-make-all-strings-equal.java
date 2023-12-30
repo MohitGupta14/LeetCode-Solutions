@@ -1,15 +1,15 @@
 class Solution {
     public boolean makeEqual(String[] words) {
-        int alpha[] = new int[26];
+        int[] count = new int[26];
 
-        for (int i = 0; i < words.length; i++) {
-            for (int j = 0; j < words[i].length(); j++) {
-                alpha[words[i].charAt(j) - 'a']++;
+        for (String word : words) {
+            for (char ch : word.toCharArray()) {
+                count[ch - 'a']++;
             }
         }
 
-        for (int count : alpha) {
-            if (count > 0 && count % words.length != 0) {
+        for (int c : count) {
+            if (c % words.length != 0) {
                 return false;
             }
         }
