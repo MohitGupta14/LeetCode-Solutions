@@ -1,36 +1,21 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public int maxLengthBetweenEqualCharacters(String s) {
+        Map<Character, Integer> lastIndexMap = new HashMap<>();
+        int maxLength = -1;
 
-        int ans = -1;
-        int i = 0;
-        int j = i + 1;
+        for (int i = 0; i < s.length(); i++) {
+            char currentChar = s.charAt(i);
 
-        int temp[] = new int[26]; 
-
-        for (int k = 0; k < s.length(); k++) {
-            temp[s.charAt(k) - 'a']++; 
-        }
-
-        while (i < s.length() - 1) {
-
-            if (temp[s.charAt(i) - 'a'] > 1) { 
-
-                if (s.charAt(i) == s.charAt(j)) {
-                    ans = Math.max(ans, j - i - 1);
-                }
-
-                if (j == s.length() - 1) {
-                    i++;
-                    j = i + 1;
-                    continue;
-                }
-
-                j++;
+            if (lastIndexMap.containsKey(currentChar)) {
+                maxLength = Math.max(maxLength, i - lastIndexMap.get(currentChar) - 1);
             } else {
-                i++;
+                lastIndexMap.put(currentChar, i);
             }
         }
 
-        return ans;
+        return maxLength;
     }
 }
