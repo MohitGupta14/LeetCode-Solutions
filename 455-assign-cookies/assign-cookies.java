@@ -6,16 +6,14 @@ class Solution {
         Arrays.sort(s);
         int ans = 0;
         int i = 0;
-        int j = 0;
 
-        while (i < g.length && j < s.length) {
-            if (s[j] >= g[i]) {
-                ans++;
+        while (i < g.length && ans < s.length) {
+            if (s[ans] >= g[i]) {
                 i++;
             }
-            j++;
+            ans++;
         }
 
-        return ans;
+        return i;
     }
 }
