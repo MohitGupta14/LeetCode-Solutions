@@ -1,27 +1,20 @@
-import java.util.ArrayList;
-
 class Solution {
-    public int numberOfBeams(String[] bank) {
-        
-        int ans = 0;
-        ArrayList<Integer> laser = new ArrayList<>();
-        
-        for (int i = 0; i < bank.length; i++) {
-            int temp = 0;
-            for (int j = 0; j < bank[i].length(); j++) {
-                if (bank[i].charAt(j) == '1') {
-                    temp++;
-                }
-            }
-            if (temp != 0) {
-                laser.add(temp);
-            }
+  public int numberOfBeams(String[] bank) {
+    int prev = 0, ans = 0;
+
+    for (String s: bank) {
+      int count = 0;
+      for (int i = 0; i < s.length(); i++)
+        if (s.charAt(i) == '1') {
+          count++;
         }
 
-        for (int i = 1; i < laser.size(); i++) {
-            ans = ans + laser.get(i - 1) * laser.get(i);
-        }
-
-        return ans;
+      if (count > 0) {
+        ans += prev * count;
+        prev = count;
+      }
     }
+
+    return ans;
+  }
 }
