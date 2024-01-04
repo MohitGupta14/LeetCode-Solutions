@@ -10,8 +10,7 @@ class Solution {
             }
         }
        int count = 0;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            int t = entry.getValue();
+        for (int t : map.values()) {
             if (t == 1) return -1;
             count += t / 3;
             if (t % 3 != 0) count++;
