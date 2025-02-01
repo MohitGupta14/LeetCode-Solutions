@@ -1,31 +1,38 @@
+import java.util.Stack;
+
 class Solution {
     public String reverseWords(String s) {
-        ArrayList<String> temp = new ArrayList<>();
-        s = s.trim(); 
+        s = s.trim();  // Remove leading and trailing spaces
 
-        int i = 0;
-        while (i < s.length()) {
-            String word = "";
+        Stack<String> st = new Stack<>();
+        int ptr = 0;
+        StringBuilder word = new StringBuilder();
 
-            while (i < s.length() && s.charAt(i) == ' ') {
-                i++;
+        while (ptr < s.length()) {
+            char ch = s.charAt(ptr);
+
+            if (ch != ' ') {
+                word.append(ch);
+            } else if (word.length() > 0) { 
+                st.push(word.toString());
+                word.setLength(0); 
             }
-            while (i < s.length() && s.charAt(i) != ' ') {
-                word += s.charAt(i);
-                i++;
-            }
+            ptr++;
+        }
 
-            if (!word.isEmpty()) {
-                temp.add(word);
+        // Push the last word (if any)
+        if (word.length() > 0) {
+            st.push(word.toString());
+        }
+
+        StringBuilder result = new StringBuilder();
+        while (!st.isEmpty()) {
+            result.append(st.pop());
+            if (!st.isEmpty()) {
+                result.append(" "); 
             }
         }
 
-        StringBuilder ans = new StringBuilder();
-        for (int j = temp.size() - 1; j >= 0; j--) {
-            ans.append(temp.get(j));
-            if (j > 0) ans.append(" ");
-        }
-
-        return ans.toString();
+        return result.toString();
     }
 }
