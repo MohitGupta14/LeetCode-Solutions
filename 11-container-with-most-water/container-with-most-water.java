@@ -1,30 +1,26 @@
 class Solution {
     public int maxArea(int[] height) {
-        int ans = -9999999;
-        int i = 0 ;
-        int j = height.length-1;
-        while(i<j){ 
-            int maxPossible = height[i]*(height.length-i-1);
-            if(maxPossible <= ans){
-                i++;
-                continue;
+        int maxVol = 0 ;
+         
+        int ptr1 = 0;
+        int ptr2 = height.length-1;
+
+        while(ptr1<height.length-1){
+            if(height[ptr1]< height[ptr2]){
+                maxVol = Math.max(maxVol,height[ptr1]*(ptr2-ptr1));
+                ptr1++;
+                ptr2 = height.length-1;
+            }else{
+               maxVol = Math.max(maxVol,height[ptr2]*(ptr2-ptr1));
+               ptr2--;
             }
 
-            maxPossible = height[j]*(j);
-            if(maxPossible <= ans){
-                j--;
-                continue;
+            if(ptr2<=ptr1){
+                ptr1++;
+                ptr2 = height.length-1;
             }
-           
-           ans = Math.max(Math.min(height[i],height[j])*(j-i),ans);
-           if(height[i]>height[j]){
-               j--;
-           }else{
-               i++;
-           }
         }
 
-        return ans;
-        
+        return maxVol;
     }
 }
