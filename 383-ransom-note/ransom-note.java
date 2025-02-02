@@ -7,7 +7,7 @@ class Solution {
 
         for(Character s : ransomNote.toCharArray()){
             if(map.containsKey(s) && map.get(s) != 0){
-                map.put(s,map.getOrDefault(s,0)-1);
+                map.put(s,map.get(s)-1);
             }else{
                 return false;
             }
