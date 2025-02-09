@@ -13,20 +13,26 @@
  *     }
  * }
  */
-class Solution {
+ class Solution {
+    private int count = 0; // To track the number of visited nodes
+    private int result = -1; // To store the kth smallest element
+
     public int kthSmallest(TreeNode root, int k) {
-
-        List<Integer> result = new ArrayList<>();
-        inorderHelper(root, result);
-
-        return result.get(k-1);
+        inorderHelper(root, k);
+        return result;
     }
 
-    private static void inorderHelper(TreeNode node, List<Integer> result) {
+    private void inorderHelper(TreeNode node, int k) {
         if (node == null) return;
-        inorderHelper(node.left, result);
-        result.add(node.val);
-        inorderHelper(node.right, result);
-    }
 
+        inorderHelper(node.left, k); 
+
+        count++;
+        if (count == k) {
+            result = node.val; 
+            return;
+        }
+
+        inorderHelper(node.right, k); // Traverse right subtree
+    }
 }
