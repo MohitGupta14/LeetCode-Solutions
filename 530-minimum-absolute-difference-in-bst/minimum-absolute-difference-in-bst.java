@@ -15,22 +15,23 @@
  */
 class Solution {
 
-    public int getMinimumDifference(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        inorderHelper(root, result);
-
-       int ans = Integer.MAX_VALUE;
-       for(int i = 1 ; i < result.size(); i++){
-         ans = Math.min(ans, Math.abs(result.get(i)-result.get(i-1)));
-       }
-
-       return ans;
+    public static int getMinimumDifference(TreeNode root) {
+        return inorderHelper(root, new int[]{Integer.MAX_VALUE}, new Integer[]{null});
     }
 
-    private static void inorderHelper(TreeNode node, List<Integer> result) {
-        if (node == null) return;
-        inorderHelper(node.left, result);
-        result.add(node.val);
-        inorderHelper(node.right, result);
+    private static int inorderHelper(TreeNode node, int[] minDiff, Integer[] prev) {
+        if (node == null) return minDiff[0];
+
+        inorderHelper(node.left, minDiff, prev);
+
+        if (prev[0] != null) {
+            minDiff[0] = Math.min(minDiff[0], node.val - prev[0]);
+        }
+        prev[0] = node.val;
+
+        inorderHelper(node.right, minDiff, prev);
+        
+        return minDiff[0];
     }
+
 }
